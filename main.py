@@ -3,7 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 dog = pd.read_csv('files/DOGE-USD.csv',
-                  parse_dates=True)
+                  parse_dates=['Date'], index_col='Date')
+
 # print(dog)
 
 btc = pd.read_csv(
@@ -20,4 +21,7 @@ prices.head()
 prices['Bitcoin'] = btc['Price']
 prices['Ether'] = eth['Value']
 prices['Doge'] = dog['High']
-print(prices.head())
+print(prices)
+
+prices.plot(figsize=(12,6), kind='bar')
+plt.show()
